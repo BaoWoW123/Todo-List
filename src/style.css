@@ -28,9 +28,12 @@ html, body {
 }
 
 .display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     flex-grow: 4;
-    text-align: center;
     background-color: #f0f9ff;
+    padding: 20px;
 }
 
 .tabs {
@@ -47,6 +50,23 @@ html, body {
     gap: 10px;
 }
 
+.tabs > *:hover {
+    background-color: gray;
+    transition: .3s;
+}
+
+.addBtn {
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    background-color:lightgray;
+    padding: 10px 30px;
+    font-size: 20px;
+}
+.addBtn:hover {
+    background-color: gray;
+    transition: .2s;
+}
 .footer {
     display: flex;
     flex: 0 1 50px;
