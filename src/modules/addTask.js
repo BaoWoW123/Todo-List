@@ -1,27 +1,60 @@
-import {storage, inboxArray, notesArray, projectsArray} from './storage'
-import UI from './UI'
+import { inboxArray, notesArray, projectsArray} from './storage'
 
+//how to create according tab array then display the according taskObject(array  )
 
-export function taskObject(taskInput, date) {
-    let inbox = document.createElement('div')
+export function createInbox () {
+    let tasks = document.createElement('div')
+
     for (let i = 0; i < inboxArray.length; i++) {
-        inbox.appendChild(createTaskDiv(i))
+    let taskDiv = document.createElement('div')
+        let taskTitle = document.createElement('div')
+        let taskDate = document.createElement('div')
+        taskDiv.className = 'taskDiv'
+
+        taskTitle.textContent = inboxArray[i].taskInput
+        taskDate.textContent = inboxArray[i].date
+
+        taskDiv.appendChild(taskTitle)
+        taskDiv.appendChild(taskDate)
+        tasks.appendChild(taskDiv)
     }
-    console.log('create taskDivs 4')
-    return inbox
+    return tasks
 }
 
-function createTaskDiv (i) {
+export function createNotes () {
+    let tasks = document.createElement('div')
+
+    for (let i = 0; i < notesArray.length; i++) {
     let taskDiv = document.createElement('div')
-    let taskTitle = document.createElement('div')
-    let taskDate = document.createElement('div')
-    taskDiv.className = 'taskDiv'
+        let taskTitle = document.createElement('div')
+        let taskDate = document.createElement('div')
+        taskDiv.className = 'taskDiv'
 
-    taskTitle.textContent = inboxArray[i].taskInput
-    taskDate.textContent = inboxArray[i].date
+        taskTitle.textContent = notesArray[i].taskInput
+        taskDate.textContent = notesArray[i].date
 
-    taskDiv.appendChild(taskTitle)
-    taskDiv.appendChild(taskDate)
+        taskDiv.appendChild(taskTitle)
+        taskDiv.appendChild(taskDate)
+        tasks.appendChild(taskDiv)
+    }
+    return tasks
+}
 
-    return taskDiv
+export function createProjects() {
+    let tasks = document.createElement('div')
+
+    for (let i = 0; i < projectsArray.length; i++) {
+    let taskDiv = document.createElement('div')
+        let taskTitle = document.createElement('div')
+        let taskDate = document.createElement('div')
+        taskDiv.className = 'taskDiv'
+
+        taskTitle.textContent = projectsArray[i].taskInput
+        taskDate.textContent = projectsArray[i].date
+
+        taskDiv.appendChild(taskTitle)
+        taskDiv.appendChild(taskDate)
+        tasks.appendChild(taskDiv)
+    }
+    return tasks
 }

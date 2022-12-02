@@ -1,5 +1,5 @@
-import { taskObject } from "./addTask"
-import {storage, inboxArray, notesArray, projectsArray} from './storage'
+import {createInbox,createNotes, createProjects } from "./addTask"
+import {storage} from './storage'
 
 let UI = () => {
     let inbox = document.querySelector('.inboxTab')
@@ -38,30 +38,37 @@ function addBtn(display) {
         
 //when add button clicked, create task into object then pushes to array
         addTaskBtn.onclick = () => {
-            console.log('addBtn click 2')
             storage(taskInput.value, date.value, display.textContent)
-            taskObject()
-            openInbox(display)
+            switch(display.firstChild.textContent) {
+                case 'Inbox':
+                    return openInbox(display)
+                case 'Notes':
+                    return openNotes(display)
+                case 'Projects':
+                    return openProjects(display)
+            }
         }
     }
     return addBtn
 }
 
 let openInbox = (display) => {
-    console.log('display 1')
     display.innerHTML = 'Inbox'
     display.appendChild(addBtn(display))
-    display.appendChild(taskObject())
+    display.appendChild(createInbox())
 }
 
 let openNotes = (display) => {
     display.innerHTML = 'Notes'
     display.appendChild(addBtn(display))
+    display.appendChild(createNotes())
+
 }
 
 let openProjects = (display) => {
     display.innerHTML = 'Projects'
     display.appendChild(addBtn(display))
+    display.appendChild(createProjects())
 }
 
 let openToday = (display) => {
