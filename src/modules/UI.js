@@ -24,16 +24,16 @@ function addBtn(display) {
         let taskInput = document.createElement('input')
         let date = document.createElement('input')
         let addTaskBtn = document.createElement('button')
-        let removeTaskBtn = document.createElement('button')
+        let removeBtn = document.createElement('button')
 
         date.setAttribute("type","date")
         addTaskBtn.textContent = 'Add'
-        removeTaskBtn.textContent = 'Remove'
+        removeBtn.textContent = 'Remove'
         
         task.appendChild(taskInput)
         task.appendChild(date)
         task.appendChild(addTaskBtn)
-        task.appendChild(removeTaskBtn)
+        task.appendChild(removeBtn)
         addBtn.parentElement.appendChild(task)
         
 //when add button clicked, create task into object then pushes to array
@@ -48,11 +48,14 @@ function addBtn(display) {
                     return openProjects(display)
             }
         }
+        removeBtn.onclick = () => {
+           event.target.parentNode.remove()
+        }
     }
     return addBtn
 }
 
-let openInbox = (display) => {
+export let openInbox = (display) => {
     display.innerHTML = 'Inbox'
     display.appendChild(addBtn(display))
     display.appendChild(createInbox())
