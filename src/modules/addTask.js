@@ -9,12 +9,13 @@ export function createInbox () {
         let taskTitle = document.createElement('div')
         let taskDate = document.createElement('div')
 
+        taskDiv.className = 'task'
         taskDiv.dataset.id = i
         taskTitle.textContent = inboxArray[i].taskInput
         taskDate.textContent = inboxArray[i].date
 
-        taskDiv.appendChild(taskTitle)
         taskDiv.appendChild(taskDate)
+        taskDiv.appendChild(taskTitle)
         taskDiv.appendChild(removeTask(taskDiv.dataset.id))
         tasks.appendChild(taskDiv)
     }
@@ -30,12 +31,14 @@ export function createNotes () {
         let taskTitle = document.createElement('div')
         let taskDate = document.createElement('div')
 
+
+        taskDiv.className = 'task'
         taskDiv.dataset.id = i
         taskTitle.textContent = notesArray[i].taskInput
         taskDate.textContent = notesArray[i].date
 
-        taskDiv.appendChild(taskTitle)
         taskDiv.appendChild(taskDate)
+        taskDiv.appendChild(taskTitle)
         taskDiv.appendChild(removeTask(taskDiv.dataset.id))
         tasks.appendChild(taskDiv)
     }
@@ -51,16 +54,36 @@ export function createProjects() {
         let taskTitle = document.createElement('div')
         let taskDate = document.createElement('div')
 
+        taskDiv.className = 'task'
         taskDiv.dataset.id = i
         taskTitle.textContent = projectsArray[i].taskInput
         taskDate.textContent = projectsArray[i].date
 
-        taskDiv.appendChild(taskTitle)
         taskDiv.appendChild(taskDate)
+        taskDiv.appendChild(taskTitle)
         taskDiv.appendChild(removeTask(taskDiv.dataset.id))
         tasks.appendChild(taskDiv)
     }
     return tasks
+}
+
+export function createToday() {
+    function leadingZero() {
+        let today = new Date().getDate()
+        if (today < 10) return today = '0' + today.toString().slice(-2) 
+    }
+    let dateToday = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${leadingZero()}`
+    let sumArray = inboxArray.concat(notesArray, projectsArray)
+    let todayTasks = document.createElement('div')
+    todayTasks.className = 'todayTasks'
+    let todayArray = sumArray.filter(el => { if (el.date == dateToday) return el.taskInput})
+    for (let i = 0; i < todayArray.length; i++) {
+        console.log(todayArray[i].taskInput)
+        let task = document.createElement('div')
+        task.textContent = todayArray[i].taskInput
+        todayTasks.appendChild(task)
+    }
+    return todayTasks
 }
 
 function removeTask(id) {
@@ -79,6 +102,5 @@ function removeTask(id) {
                 return (event.target.parentElement).remove()
         }
     })
-    console.log(inboxArray, notesArray, projectsArray)
     return removeBtn
 }

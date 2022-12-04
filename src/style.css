@@ -24,20 +24,21 @@ html, body {
 
 .content {
     display: flex;
-    flex: 1 1 auto;
+    height: 100vh;
 }
 
 .display {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-grow: 4;
     background-color: #f0f9ff;
-    padding: 20px;
+    padding: 30px;
+    width: 75%;
+    font-size: 40px !important;
 }
 
 .tabs {
-    flex-grow: 1;
+    width: 25%;
     background-color: lightgray;
 }
 
@@ -63,10 +64,12 @@ html, body {
     padding: 10px 30px;
     font-size: 20px;
 }
+
 .addBtn:hover {
     background-color: gray;
     transition: .2s;
 }
+
 .footer {
     display: flex;
     flex: 0 1 50px;
@@ -74,4 +77,44 @@ html, body {
     align-items: center;
     background-color: #38bdf8;
     color: white;
+}
+
+.inboxTasks, .notesTasks, .projectsTasks {
+    justify-content: center;
+    width: 100%;
+    background-color: lightgray;
+}
+.todayTasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    width: 90%;
+}
+.todayTasks > * {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 10px 20px;
+    border-left: 10px solid #38bdf8;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.task > :nth-child(2) {
+    position: absolute;
+    padding-left: 35%;
+}
+
+.task > :nth-child(1) {
+    padding: 0px 20px;
+    border-right: 2px solid black;
 }

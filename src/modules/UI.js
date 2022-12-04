@@ -1,4 +1,4 @@
-import {createInbox,createNotes, createProjects } from "./addTask"
+import {createInbox,createNotes, createProjects, createToday } from "./addTask"
 import {storage} from './storage'
 
 let UI = () => {
@@ -38,6 +38,7 @@ function addBtn(display) {
         
 //when add button clicked, create task into object then pushes to array
         addTaskBtn.onclick = () => {
+            if (taskInput.value === '') return;
             storage(taskInput.value, date.value, display.textContent)
             switch(display.firstChild.textContent) {
                 case 'Inbox':
@@ -75,6 +76,8 @@ let openProjects = (display) => {
 }
 
 let openToday = (display) => {
-    display.innerHTML = 'Today'
+    let dateToday = new Date().toLocaleDateString("en-US")
+    display.innerHTML = `${dateToday}`
+    display.appendChild(createToday())
 }
 export default UI()
