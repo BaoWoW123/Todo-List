@@ -19,5 +19,21 @@ export function storage(taskInput, date, tab) {
             projectsArray.push({taskInput, date});
             break;
     }
+    saveLocal()
     return storage
 }
+
+export function saveLocal() {
+    //Updates local storage by saving arrays
+    localStorage.setItem('inbox', JSON.stringify(inboxArray))
+    localStorage.setItem('notes', JSON.stringify(notesArray))
+    localStorage.setItem('projects', JSON.stringify(projectsArray))
+}
+
+export function loadLocal() {
+    //Updates arrays to local storage
+    inboxArray = JSON.parse(localStorage.getItem('inbox')) 
+    notesArray = JSON.parse(localStorage.getItem('notes'))  
+    projectsArray = JSON.parse(localStorage.getItem('projects')) 
+}
+

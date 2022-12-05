@@ -1,4 +1,4 @@
-import { inboxArray, notesArray, projectsArray} from './storage'
+import {inboxArray, notesArray, projectsArray, saveLocal} from './storage'
 
 export function createInbox () {
     let tasks = document.createElement('div')
@@ -78,7 +78,6 @@ export function createToday() {
     todayTasks.className = 'todayTasks'
     let todayArray = sumArray.filter(el => { if (el.date == dateToday) return el.taskInput})
     for (let i = 0; i < todayArray.length; i++) {
-        console.log(todayArray[i].taskInput)
         let task = document.createElement('div')
         task.textContent = todayArray[i].taskInput
         todayTasks.appendChild(task)
@@ -93,14 +92,17 @@ function removeTask(id) {
         switch (event.target.parentElement.parentElement.className) {
             case 'inboxTasks': 
                 inboxArray.splice(id, 1)
+                saveLocal()           
                 return (event.target.parentElement).remove()
             case 'notesTasks':
                 notesArray.splice(id, 1)
+                saveLocal()           
                 return (event.target.parentElement).remove()
             case 'projectsTasks':
                 projectsArray.splice(id, 1)
+                saveLocal()           
                 return (event.target.parentElement).remove()
         }
-    })
+    })   
     return removeBtn
 }

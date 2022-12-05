@@ -1,5 +1,5 @@
 import {createInbox,createNotes, createProjects, createToday } from "./addTask"
-import {storage} from './storage'
+import {loadLocal, storage} from './storage'
 
 let UI = () => {
     let inbox = document.querySelector('.inboxTab')
@@ -56,28 +56,33 @@ function addBtn(display) {
     return addBtn
 }
 
-export let openInbox = (display) => {
+let openInbox = (display) => {
     display.innerHTML = 'Inbox'
     display.appendChild(addBtn(display))
+    loadLocal()
     display.appendChild(createInbox())
 }
 
 let openNotes = (display) => {
     display.innerHTML = 'Notes'
     display.appendChild(addBtn(display))
+    loadLocal()
     display.appendChild(createNotes())
-
 }
 
 let openProjects = (display) => {
     display.innerHTML = 'Projects'
     display.appendChild(addBtn(display))
+    loadLocal()
     display.appendChild(createProjects())
 }
 
 let openToday = (display) => {
     let dateToday = new Date().toLocaleDateString("en-US")
     display.innerHTML = `${dateToday}`
+    loadLocal()
     display.appendChild(createToday())
 }
+
 export default UI()
+
